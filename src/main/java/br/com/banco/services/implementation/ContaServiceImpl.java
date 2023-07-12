@@ -35,5 +35,8 @@ public class ContaServiceImpl implements ContaServiceInterface{
         return contaRepository.findAll();
     }
 
+    public Optional<ContaEntity> findById(Long id){
+        return contaRepository.findById(id);
+    }
 
 }
