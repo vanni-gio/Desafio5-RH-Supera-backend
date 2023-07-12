@@ -45,6 +45,18 @@ public class ContaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(_contaService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneConta(@PathVariable(value = "id") Long id)
+    {
+        var contaOptional = _contaService.findById(id);
+        if(!contaOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Conta não encontrada!");
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(contaOptional.get());
+    }
+
+
+
 
     // @RequestMapping(value = "/conta/{id}", method =  RequestMethod.PUT)
     // public ResponseEntity<ContaEntity> Put(@PathVariable(value = "id") long id, @Validated @RequestBody ContaEntity newConta)
