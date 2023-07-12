@@ -1,11 +1,15 @@
 package br.com.banco.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +30,19 @@ public class ContaController {
     @PostMapping
     public ResponseEntity<Object> saveConta(@Valid @RequestBody ContaDto contaDto)
     {
+        if(_contaService.existsByCpf(contaDto.getCpf())){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflito: CPF já cadastrado!");
+        }
         var contaEntity = new ContaEntity();
         BeanUtils.copyProperties(contaDto, contaEntity);
         contaEntity.setSaldoTotal(500.0); 
         return ResponseEntity.status(HttpStatus.CREATED).body(_contaService.save(contaEntity));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ContaEntity>> getAllContas()
+    {
+        return ResponseEntity.status(HttpStatus.CREATED).body(_contaService.findAll());
     }
 
 
