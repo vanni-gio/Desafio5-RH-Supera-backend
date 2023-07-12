@@ -12,29 +12,29 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "conta")
 public class ContaEntity {
    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_conta")
+    private Long id_conta;
+    
+    @Column(nullable = false, name = "saldo_total")
     private Double saldoTotal;
 
-    @Column(nullable = false, length = 11)
+    @Column(nullable = false, length = 11, name = "cpf")
     private String cpf;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "senha")
     private String senha;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50, name = "nome_responsavel")
     private String nomeResponsavel;
 
     @OneToMany(

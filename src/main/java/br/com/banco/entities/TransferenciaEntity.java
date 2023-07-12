@@ -16,34 +16,32 @@ import javax.persistence.Table;
 
 
 import br.com.banco.types.TipoTransacao;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
 
 
 
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "transferencia")
 public class TransferenciaEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "data_transferencia")
     private LocalDateTime dataTransferencia;
     
-    @Column(nullable = false)
+    @Column(nullable = false, name="valor")
     private double valor;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="tipo")
     private String tipo;
-
+    
     @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false, name="nome_operador_transacao")
     private TipoTransacao nomeOperadorTransacao;
-
-    @Column(nullable = false)
-    private Integer contaId;
 
     @ManyToOne(
         cascade = CascadeType.ALL
