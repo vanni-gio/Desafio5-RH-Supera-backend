@@ -30,4 +30,10 @@ public class ContaServiceImpl implements ContaServiceInterface{
     public boolean existsByCpf(String cpf) {
         return contaRepository.existsByCpf(cpf);
     }
+
+    public List<ContaEntity> findAll(){
+        return contaRepository.findAll();
+    }
+
+
 }
