@@ -18,14 +18,16 @@ import org.springframework.beans.BeanUtils;
 import br.com.banco.dtos.ContaDto;
 import br.com.banco.entities.ContaEntity;
 import br.com.banco.services.implementation.ContaServiceImpl;
+import br.com.banco.services.implementation.TransferenciaServiceImpl;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/conta")
-public class ContaController {
+public class BancoController {
 
     @Autowired
     private ContaServiceImpl _contaService;
+    private TransferenciaServiceImpl _transferenciaService;
 
     @PostMapping
     public ResponseEntity<Object> saveConta(@Valid @RequestBody ContaDto contaDto)
@@ -56,31 +58,4 @@ public class ContaController {
     }
 
 
-
-
-    // @RequestMapping(value = "/conta/{id}", method =  RequestMethod.PUT)
-    // public ResponseEntity<ContaEntity> Put(@PathVariable(value = "id") long id, @Validated @RequestBody ContaEntity newConta)
-    // {
-    //     Optional<ContaEntity> oldConta = _contaRepository.findById(id);
-    //     if(oldConta.isPresent()){
-    //         ContaEntity conta = oldConta.get();
-    //         conta.setSenha(newConta.getSenha());
-    //         _contaRepository.save(conta);
-    //         return new ResponseEntity<ContaEntity>(conta, HttpStatus.OK);
-    //     }
-    //     else
-    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    // }
-
-    // @RequestMapping(value = "/conta/{id}", method = RequestMethod.DELETE)
-    // public ResponseEntity<Object> Delete(@PathVariable(value = "id") long id)
-    // {
-    //     Optional<ContaEntity> conta = _contaRepository.findById(id);
-    //     if(conta.isPresent()){
-    //         _contaRepository.delete(conta.get());
-    //         return new ResponseEntity<>(HttpStatus.OK);
-    //     }
-    //     else
-    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    // }
 }
