@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import br.com.banco.entities.ContaEntity;
 import br.com.banco.repositories.ContaRepository;
-import br.com.banco.services.interfaces.ContaServiceInterface;
+import br.com.banco.services.interfaces.ServiceInterface;
 
 /**
  * ContaService
  */
 @Service
-public class ContaServiceImpl implements ContaServiceInterface{
+public class ContaServiceImpl implements ServiceInterface{
 
     @Autowired
     ContaRepository contaRepository;
