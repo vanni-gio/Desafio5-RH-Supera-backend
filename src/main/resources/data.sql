@@ -1,8 +1,12 @@
 CREATE TABLE conta
 (
-    id_conta IDENTITY NOT NULL PRIMARY KEY,
+    id IDENTITY NOT NULL PRIMARY KEY,
+    saldo_total NUMERIC (20,2) NOT NULL,
+    cpf VARCHAR(11) UNIQUE NOT NULL,
+    senha TEXT NOT NULL,
     nome_responsavel VARCHAR(50) NOT NULL
 );
+
 
 
 CREATE TABLE transferencia
@@ -10,7 +14,7 @@ CREATE TABLE transferencia
     id IDENTITY NOT NULL PRIMARY KEY,
     data_transferencia TIMESTAMP WITH TIME ZONE NOT NULL,
     valor NUMERIC (20,2) NOT NULL,
-    tipo VARCHAR(15) NOT NULL,
+    tipo TEXT CHECK( pType IN ('DEPOSITO','SAQUE','TRANSFERENCIA') ) NOT NULL,
     nome_operador_transacao VARCHAR (50),
     conta_id INT NOT NULL,
 
@@ -21,6 +25,8 @@ CREATE TABLE transferencia
 
 INSERT INTO conta (id_conta, nome_responsavel) VALUES (1,'Fulano');
 INSERT INTO conta (id_conta, nome_responsavel) VALUES (2,'Sicrano');
+INSERT INTO conta (id_conta, nome_responsavel) VALUES (3,'Beltrano');
+INSERT INTO conta (id_conta, nome_responsavel) VALUES (4,'Ronnyscley');
 
 INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (1,'2019-01-01 12:00:00+03',30895.46,'DEPOSITO', null, 1);
 INSERT INTO transferencia (id,data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES (2,'2019-02-03 09:53:27+03',12.24,'DEPOSITO', null,2);
