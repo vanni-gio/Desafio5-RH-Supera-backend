@@ -1,5 +1,6 @@
-package br.com.banco.services;
+package br.com.banco.services.interfaces;
 
 public interface ContaServiceInterface {
+    
     
 }
