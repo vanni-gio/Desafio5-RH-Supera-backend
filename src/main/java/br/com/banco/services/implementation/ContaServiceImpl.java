@@ -1,6 +1,9 @@
 
 package br.com.banco.services.implementation;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +27,7 @@ public class ContaServiceImpl implements ContaServiceInterface{
         return contaRepository.save(conta);
     }
 
+    public boolean existsByCpf(String cpf) {
+        return contaRepository.existsByCpf(cpf);
+    }
 }
