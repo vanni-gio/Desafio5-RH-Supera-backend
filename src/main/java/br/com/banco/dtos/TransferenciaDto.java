@@ -1,7 +1,6 @@
 package br.com.banco.dtos;
 
-import java.time.LocalDateTime;
-
+import java.sql.Date;
 import javax.validation.constraints.NotBlank;
 
 import br.com.banco.types.TipoTransacao;
@@ -11,7 +10,7 @@ import lombok.Data;
 public class TransferenciaDto {
 
     @NotBlank
-    private LocalDateTime dataTransferencia;
+    private Date dataTransferencia;
 
     @NotBlank
     private double valor;
