@@ -13,8 +13,6 @@ public class ContaDto {
     @CPF
     private String cpf;
 
-    @NotBlank
-    private String senha;
 
     @NotBlank
     private String nomeResponsavel;
