@@ -28,6 +28,9 @@ public class ContaEntity {
     @Column(nullable = false, name = "saldo_total")
     private Double saldoTotal;
 
+    @Column(nullable = false, name = "nro_conta")
+    private Long nroConta;
+
     @Column(nullable = false, length = 11, name = "cpf")
     private String cpf;
 
