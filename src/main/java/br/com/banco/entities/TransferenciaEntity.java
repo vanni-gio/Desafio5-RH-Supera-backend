@@ -1,6 +1,7 @@
 package br.com.banco.entities;
 
-import java.sql.Date;
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,11 +39,12 @@ public class TransferenciaEntity {
     private double valor;
 
     @Column(nullable = false, name="tipo")
+    @Enumerated(EnumType.STRING)
     private TipoTransacao tipo;
     
-    @Enumerated(EnumType.ORDINAL)
+    
     @Column(nullable = false, name="nome_operador_transacao")
-    private String nomeOperadorTransacao;
+    private String nomeOperadorTransferencia;
 
     @ManyToOne(
         cascade = CascadeType.ALL

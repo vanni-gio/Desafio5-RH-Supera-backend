@@ -1,6 +1,7 @@
 package br.com.banco.services.implementation;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,5 +37,7 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
     public List<TransferenciaEntity> getAllByDataTransferenciaBetween(Date dataStart, Date dataEnd) {
         return transferenciaRepository.findAllByDataTransferenciaBetween(dataStart, dataEnd);
     }
+
+
 
 }

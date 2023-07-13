@@ -1,6 +1,8 @@
 package br.com.banco.dtos;
 
-import java.sql.Date;
+
+import java.util.Date;
+
 import javax.validation.constraints.NotBlank;
 
 import br.com.banco.types.TipoTransacao;
@@ -19,5 +21,5 @@ public class TransferenciaDto {
     private TipoTransacao tipo;
 
     
-    private String nomeOperadorTransacao;
+    private String nomeOperadorTransferencia;
 }
