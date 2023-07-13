@@ -1,7 +1,6 @@
 package br.com.banco.entities;
 
-import java.time.LocalDateTime;
-
+import java.sql.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import javax.persistence.Table;
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.com.banco.types.TipoTransacao;
 import lombok.Data;
@@ -31,7 +31,8 @@ public class TransferenciaEntity {
     private Long id;
 
     @Column(nullable = false, name = "data_transferencia")
-    private LocalDateTime dataTransferencia;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataTransferencia;
     
     @Column(nullable = false, name="valor")
     private double valor;
