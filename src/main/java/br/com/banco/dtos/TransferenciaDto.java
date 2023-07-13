@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotBlank;
 
-import br.com.banco.entities.ContaEntity;
 import br.com.banco.types.TipoTransacao;
 import lombok.Data;
 
@@ -20,9 +19,6 @@ public class TransferenciaDto {
     @NotBlank
     private TipoTransacao tipo;
 
-    @NotBlank
+    
     private String nomeOperadorTransacao;
-
-    @NotBlank
-    private ContaEntity conta;
 }
