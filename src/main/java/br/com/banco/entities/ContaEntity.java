@@ -34,9 +34,6 @@ public class ContaEntity {
     @Column(nullable = false, length = 11, name = "cpf")
     private String cpf;
 
-    @Column(nullable = false, name = "senha")
-    private String senha;
-
     @Column(length = 50, name = "nome_responsavel")
     private String nomeResponsavel;
 
