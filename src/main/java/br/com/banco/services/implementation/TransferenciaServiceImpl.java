@@ -8,11 +8,13 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.banco.entities.TransferenciaEntity;
 import br.com.banco.repositories.TransferenciaRepository;
 import br.com.banco.services.interfaces.TransferenciaServiceInterface;
 
+@Service
 public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
     @Autowired
     TransferenciaRepository transferenciaRepository;
