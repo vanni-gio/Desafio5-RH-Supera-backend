@@ -1,5 +1,6 @@
 package br.com.banco.services.implementation;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +29,12 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
         return transferenciaRepository.findAll();
     }
 
-    public List<TransferenciaEntity> getAllByNomeOperador() {
-        return transferenciaRepository.findAll();
+    public List<TransferenciaEntity> getAllByNomeOperadorTransferencia(String nomeOperadorTransferencia) {
+        return transferenciaRepository.findAllByNomeOperadorTransferencia(nomeOperadorTransferencia);
+    }
+
+    public List<TransferenciaEntity> getAllByDataTransferenciaBetween(Date dataStart, Date dataEnd) {
+        return transferenciaRepository.findAllByDataTransferenciaBetween(dataStart, dataEnd);
     }
 
 }
