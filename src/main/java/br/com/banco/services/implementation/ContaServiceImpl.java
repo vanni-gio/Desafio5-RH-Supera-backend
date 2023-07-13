@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import br.com.banco.entities.ContaEntity;
 import br.com.banco.repositories.ContaRepository;
-import br.com.banco.services.interfaces.ServiceInterface;
+import br.com.banco.services.interfaces.ContaServiceInterface;
 
 /**
  * ContaService
  */
 @Service
-public class ContaServiceImpl implements ServiceInterface{
+public class ContaServiceImpl implements ContaServiceInterface{
 
     @Autowired
     ContaRepository contaRepository;
@@ -37,6 +37,10 @@ public class ContaServiceImpl implements ServiceInterface{
 
     public Optional<ContaEntity> findById(Long id){
         return contaRepository.findById(id);
+    }
+
+    public void delete(Long id){
+        contaRepository.deleteById(id);
     }
 
 }
