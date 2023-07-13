@@ -37,11 +37,11 @@ public class TransferenciaEntity {
     private double valor;
 
     @Column(nullable = false, name="tipo")
-    private String tipo;
+    private TipoTransacao tipo;
     
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false, name="nome_operador_transacao")
-    private TipoTransacao nomeOperadorTransacao;
+    private String nomeOperadorTransacao;
 
     @ManyToOne(
         cascade = CascadeType.ALL
