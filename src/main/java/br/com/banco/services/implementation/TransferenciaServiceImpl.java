@@ -40,6 +40,16 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
         return transferenciaRepository.findAllByDataTransferenciaBetween(dataStart, dataEnd);
     }
 
+    public List<TransferenciaEntity> getAllByNomeOperadorTransferenciaAndDataTransferenciaBetween(
+        String nomeOperadorTransferencia,
+        Date dataTransferenciaStart,
+        Date dataTransferenciaEnd
+    ) {
 
+        return transferenciaRepository.findAllByNomeOperadorTransferenciaAndDataTransferenciaBetween(
+            nomeOperadorTransferencia,
+            dataTransferenciaStart,
+            dataTransferenciaEnd);
+    }
 
 }
