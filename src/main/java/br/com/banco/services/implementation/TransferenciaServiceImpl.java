@@ -1,5 +1,8 @@
 package br.com.banco.services.implementation;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,18 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
     @Transactional
     public TransferenciaEntity save(TransferenciaEntity transferencia){
         return transferenciaRepository.save(transferencia);
+    }
+
+    public Optional<TransferenciaEntity> getOneTransferencia(Long id_transferencia) {
+        return transferenciaRepository.findById(id_transferencia);
+    }
+
+    public List<TransferenciaEntity> getAll() {
+        return transferenciaRepository.findAll();
+    }
+
+    public List<TransferenciaEntity> getAllByNomeOperador() {
+        return transferenciaRepository.findAll();
     }
 
 }
