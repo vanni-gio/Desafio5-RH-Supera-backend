@@ -1,16 +1,17 @@
 package br.com.banco.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 import lombok.Data;
 
@@ -23,7 +24,7 @@ public class ContaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conta")
-    private Long id_conta;
+    private Long idConta;
     
     @Column(nullable = false, name = "saldo_total")
     private Double saldoTotal;
@@ -37,9 +38,6 @@ public class ContaEntity {
     @Column(length = 50, name = "nome_responsavel")
     private String nomeResponsavel;
 
-    @OneToMany(
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
-    private List<TransferenciaEntity> transferencias = new ArrayList<>();
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "conta")
+    private List<TransferenciaEntity> transferencias;
 }
