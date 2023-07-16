@@ -35,19 +35,19 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
 
     public TransferenciasDto getAll() {
         var list = transferenciaRepository.findAll();
-        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(null, null, list);
+        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(null, null,null, list);
         return newTransferenciasDto;
     }
 
     public TransferenciasDto getAllByNomeOperadorTransferencia(String nomeOperadorTransferencia) {
         var list = transferenciaRepository.findAllByNomeOperadorTransferencia(nomeOperadorTransferencia);
-        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(null, null, list);
+        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(null, null, nomeOperadorTransferencia, list);
         return newTransferenciasDto;
     }
 
     public TransferenciasDto getAllByDataTransferenciaBetween(Date dataStart, Date dataEnd) {
         var list = transferenciaRepository.findAllByDataTransferenciaBetween(dataStart, dataEnd);
-        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(dataStart, dataEnd, list);
+        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(dataStart, dataEnd, null, list);
         return newTransferenciasDto;
     }
 
@@ -61,13 +61,14 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
             nomeOperadorTransferencia,
             dataStart,
             dataEnd);
-        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(dataStart, dataEnd, list);
+        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(dataStart, dataEnd, nomeOperadorTransferencia, list);
         return newTransferenciasDto;
     }
 
     private TransferenciasDto getTransferenciasAsDto(
             Date dataInicio,
             Date dataFim,
+            String nomeOperador,
             List<TransferenciaEntity> list
         ) {
         
@@ -79,8 +80,10 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
                 var dataTransferencia = t.getDataTransferencia();
                 if(dataTransferencia.compareTo(dataFim) < 0 && dataTransferencia.compareTo(dataInicio) >= 0)
                     saldoPeriodo += t.getValor();
+                
+            }else if(nomeOperador != null){
+                saldoPeriodo += t.getValor();
             }
-
         }
         newTransferenciasDto.setTransferencias(list);
         newTransferenciasDto.setSaldoTotal(saldoTotal);
