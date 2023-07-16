@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.banco.entities.ContaEntity;
+import br.com.banco.entities.TransferenciaEntity;
 import br.com.banco.repositories.ContaRepository;
 import br.com.banco.services.interfaces.ContaServiceInterface;
 
@@ -31,11 +32,12 @@ public class ContaServiceImpl implements ContaServiceInterface{
         return contaRepository.existsByCpf(cpf);
     }
 
-    public List<ContaEntity> findAll(){
+    public List<ContaEntity> getAll(){
         return contaRepository.findAll();
     }
 
-    public Optional<ContaEntity> findById(Long id){
+
+    public Optional<ContaEntity> getById(Long id){
         return contaRepository.findById(id);
     }
 
