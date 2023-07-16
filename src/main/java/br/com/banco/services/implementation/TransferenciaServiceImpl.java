@@ -124,4 +124,10 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
         }
         return false;
     }
+
+
+    
+    public Optional<TransferenciaEntity> getTransferenciaById(Long transferenciaId) throws TransferenciaNotFoundException {
+        return transferenciaRepository.findById(transferenciaId);
+    }
 }
