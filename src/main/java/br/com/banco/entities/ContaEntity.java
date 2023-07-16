@@ -12,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
-
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 @Data
 @Table(name = "conta")
@@ -24,7 +26,7 @@ public class ContaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conta")
-    private Long idConta;
+    private Long id;
     
     @Column(nullable = false, name = "saldo_total")
     private Double saldoTotal;
@@ -39,5 +41,6 @@ public class ContaEntity {
     private String nomeResponsavel;
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "conta")
+    @JsonIgnore
     private List<TransferenciaEntity> transferencias;
 }
