@@ -59,13 +59,31 @@ public class BancoController {
 
 
     @GetMapping("/contas")
-    public ResponseEntity<List<ContaEntity>> getAllContas(
+    public ResponseEntity<Object> getAllContas(
         @RequestParam(required = false) Date dataInicial,
         @RequestParam(required = false) Date dataFinal,
         @RequestParam(required = false) String nomeOperador
     ){
-        var contas = _contaService.findAll();
+        List<ContaEntity> contas = _contaService.getAll();
+        boolean isDataInicialNull = nullOrEmpty(dataInicial);
+        boolean isDataFinalNull = nullOrEmpty(dataFinal);
+        boolean isNomeOperadorEmptyOrNull = nullOrEmpty(nomeOperador);
 
+
+        if(isDataFinalNull && isDataInicialNull){
+            if(!isNomeOperadorEmptyOrNull)
+                for (ContaEntity contaEntity : contas) {
+                    var filteredTransferencias = _transferenciaService.filterTransferenciasConta(contaEntity, dataInicial, dataFinal, nomeOperador);
+                    contaEntity.setTransferencias(filteredTransferencias);
+                }      
+        }else if(!isDataFinalNull && !isDataInicialNull){
+            for (ContaEntity contaEntity : contas) {
+                var filteredTransferencias = _transferenciaService.filterTransferenciasConta(contaEntity, dataInicial, dataFinal, nomeOperador);
+                contaEntity.setTransferencias(filteredTransferencias);
+            }
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Os campos data inicial e data final são mutualmente necessários!");
+        }
         return ResponseEntity.status(HttpStatus.OK).body(contas);
     }
 
