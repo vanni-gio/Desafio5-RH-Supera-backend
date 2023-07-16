@@ -13,6 +13,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.banco.dtos.TransferenciasDto;
 import br.com.banco.entities.ContaEntity;
 import br.com.banco.entities.TransferenciaEntity;
 import br.com.banco.repositories.TransferenciaRepository;
@@ -32,28 +33,59 @@ public class TransferenciaServiceImpl implements TransferenciaServiceInterface{
         return transferenciaRepository.findById(id_transferencia);
     }
 
-    public List<TransferenciaEntity> getAll() {
-        return transferenciaRepository.findAll();
+    public TransferenciasDto getAll() {
+        var list = transferenciaRepository.findAll();
+        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(null, null, list);
+        return newTransferenciasDto;
     }
 
-    public List<TransferenciaEntity> getAllByNomeOperadorTransferencia(String nomeOperadorTransferencia) {
-        return transferenciaRepository.findAllByNomeOperadorTransferencia(nomeOperadorTransferencia);
+    public TransferenciasDto getAllByNomeOperadorTransferencia(String nomeOperadorTransferencia) {
+        var list = transferenciaRepository.findAllByNomeOperadorTransferencia(nomeOperadorTransferencia);
+        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(null, null, list);
+        return newTransferenciasDto;
     }
 
-    public List<TransferenciaEntity> getAllByDataTransferenciaBetween(Date dataStart, Date dataEnd) {
-        return transferenciaRepository.findAllByDataTransferenciaBetween(dataStart, dataEnd);
+    public TransferenciasDto getAllByDataTransferenciaBetween(Date dataStart, Date dataEnd) {
+        var list = transferenciaRepository.findAllByDataTransferenciaBetween(dataStart, dataEnd);
+        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(dataStart, dataEnd, list);
+        return newTransferenciasDto;
     }
 
-    public List<TransferenciaEntity> getAllByNomeOperadorTransferenciaAndDataTransferenciaBetween(
+    public TransferenciasDto getAllByNomeOperadorTransferenciaAndDataTransferenciaBetween(
         String nomeOperadorTransferencia,
-        Date dataTransferenciaStart,
-        Date dataTransferenciaEnd
+        Date dataStart,
+        Date dataEnd
     ) {
 
-        return transferenciaRepository.findAllByNomeOperadorTransferenciaAndDataTransferenciaBetween(
+        List<TransferenciaEntity> list = transferenciaRepository.findAllByNomeOperadorTransferenciaAndDataTransferenciaBetween(
             nomeOperadorTransferencia,
-            dataTransferenciaStart,
-            dataTransferenciaEnd);
+            dataStart,
+            dataEnd);
+        TransferenciasDto newTransferenciasDto = getTransferenciasAsDto(dataStart, dataEnd, list);
+        return newTransferenciasDto;
+    }
+
+    private TransferenciasDto getTransferenciasAsDto(
+            Date dataInicio,
+            Date dataFim,
+            List<TransferenciaEntity> list
+        ) {
+        
+        TransferenciasDto newTransferenciasDto = new TransferenciasDto();
+        double saldoTotal = transferenciaRepository.sumSaldoTotal();
+        double saldoPeriodo = 0;
+        for (TransferenciaEntity t : list) {
+            if(dataFim != null && dataInicio != null){
+                var dataTransferencia = t.getDataTransferencia();
+                if(dataTransferencia.compareTo(dataFim) < 0 && dataTransferencia.compareTo(dataInicio) >= 0)
+                    saldoPeriodo += t.getValor();
+            }
+
+        }
+        newTransferenciasDto.setTransferencias(list);
+        newTransferenciasDto.setSaldoTotal(saldoTotal);
+        newTransferenciasDto.setSaldoPeriodo(saldoPeriodo);
+        return newTransferenciasDto;
     }
 
     
