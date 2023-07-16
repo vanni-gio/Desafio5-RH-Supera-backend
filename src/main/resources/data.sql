@@ -31,13 +31,11 @@ INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transa
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2019-02-03 09:53:27+03',12.24,'DEPOSITO', null,2);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2019-05-04 08:12:45+03',-500.50,'SAQUE', null,1);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2019-08-07 08:12:45+03',-530.50,'SAQUE', null,2);
-INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2020-06-08 10:15:01+03',3241.23,'TRANSFERENCIA_SAIDA', 'Beltrano',1);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2021-04-01 12:12:04+03',25173.09,'TRANSFERENCIA_ENTRADA', 'Ronnyscley',2);
 
 -- Comandos de inserção para a tabela 'transferencia'
 
 -- Transferências de Depósito
-INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2019-01-01 12:00:00+03', 30895.46, 'DEPOSITO', null, 1);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2019-02-03 09:53:27+03', 12.24, 'DEPOSITO', null, 2);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2022-03-12 15:30:00+03', 1500.75, 'DEPOSITO', null, 1);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2022-04-20 14:45:12+03', 300.50, 'DEPOSITO', null, 2);
@@ -65,7 +63,6 @@ INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transa
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2022-10-10 14:40:27+03', 1000.00, 'TRANSFERENCIA_SAIDA', 'Beltrano', 4);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2022-12-20 16:55:32+03', 500.25, 'TRANSFERENCIA_SAIDA', 'Ronnyscley', 4);
 -- Transferências de Entrada
-INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2021-04-01 12:12:04+03', 25173.09, 'TRANSFERENCIA_ENTRADA', 'Ronnyscley', 2);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2022-10-19 17:55:21+03', 1200.00, 'TRANSFERENCIA_SAIDA', 'Ciclano', 2);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2022-11-25 12:30:10+03', 2000.00, 'TRANSFERENCIA_ENTRADA', 'Beltrano', 1);
 INSERT INTO transferencia (data_transferencia, valor, tipo, nome_operador_transacao, conta_id) VALUES ('2022-12-30 09:10:05+03', 500.00, 'TRANSFERENCIA_ENTRADA', 'Ronnyscley', 2);
