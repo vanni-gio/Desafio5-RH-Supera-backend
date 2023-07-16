@@ -50,7 +50,7 @@ public class TransferenciaEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "conta_id")
-    @JsonIgnore
+    // @JsonIgnore
     private ContaEntity conta;
 
     //standard constructors, getters, setters
