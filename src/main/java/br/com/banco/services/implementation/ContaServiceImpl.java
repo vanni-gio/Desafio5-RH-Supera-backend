@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.banco.entities.ContaEntity;
+import br.com.banco.exceptions.ContaNotFoundException;
 import br.com.banco.repositories.ContaRepository;
 import br.com.banco.services.interfaces.ContaServiceInterface;
 
@@ -36,7 +37,7 @@ public class ContaServiceImpl implements ContaServiceInterface{
     }
 
 
-    public Optional<ContaEntity> getById(Long id){
+    public Optional<ContaEntity> getById(Long id) throws ContaNotFoundException{
         return contaRepository.findById(id);
     }
 
