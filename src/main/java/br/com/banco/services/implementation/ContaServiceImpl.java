@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.banco.entities.ContaEntity;
-import br.com.banco.entities.TransferenciaEntity;
 import br.com.banco.repositories.ContaRepository;
 import br.com.banco.services.interfaces.ContaServiceInterface;
 
